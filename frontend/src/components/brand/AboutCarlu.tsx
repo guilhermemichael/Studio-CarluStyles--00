@@ -1,4 +1,7 @@
 import { Award, HeartHandshake, Microscope } from "lucide-react";
+import { useState } from "react";
+
+import { carluAssets } from "../../features/carlu/assets";
 
 const points = [
   {
@@ -19,9 +22,21 @@ const points = [
 ];
 
 export function AboutCarlu() {
+  const [portraitSrc, setPortraitSrc] = useState(carluAssets.portraitDryer);
+
   return (
     <section className="bg-carbon px-4 py-20 text-pearl sm:px-6 lg:px-8">
-      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_1fr] lg:items-center">
+      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+        <figure className="overflow-hidden rounded-lg border border-pearl/10 bg-white/[0.035]">
+          <img
+            src={portraitSrc}
+            alt="Carlu em jaleco da Studio Carlu Styles com ferramenta profissional"
+            className="aspect-[4/5] w-full object-cover"
+            loading="lazy"
+            onError={() => setPortraitSrc(carluAssets.logoFallback)}
+          />
+        </figure>
+
         <div>
           <p className="font-ui text-sm font-semibold text-gold">Sobre a Studio</p>
           <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
@@ -33,20 +48,19 @@ export function AboutCarlu() {
             acabamento estético refinado para entregar resultados personalizados em
             coloração, luzes, mechas, tratamentos, finalizações e transformações.
           </p>
-        </div>
+          <div className="mt-8 grid gap-4">
+            {points.map((point) => {
+              const Icon = point.icon;
 
-        <div className="grid gap-4">
-          {points.map((point) => {
-            const Icon = point.icon;
-
-            return (
-              <article key={point.title} className="rounded-lg border border-pearl/10 bg-white/[0.035] p-5">
-                <Icon className="text-gold" size={22} aria-hidden="true" />
-                <h3 className="mt-4 font-display text-2xl text-pearl">{point.title}</h3>
-                <p className="mt-2 font-body text-sm leading-6 text-pearl/64">{point.body}</p>
-              </article>
-            );
-          })}
+              return (
+                <article key={point.title} className="rounded-lg border border-pearl/10 bg-white/[0.035] p-5">
+                  <Icon className="text-gold" size={22} aria-hidden="true" />
+                  <h3 className="mt-4 font-display text-2xl text-pearl">{point.title}</h3>
+                  <p className="mt-2 font-body text-sm leading-6 text-pearl/64">{point.body}</p>
+                </article>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

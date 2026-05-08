@@ -1,7 +1,9 @@
 import { ArrowRight, MessageCircle, ShieldCheck, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 import { ButtonLink } from "../ui/Button";
+import { carluAssets } from "../../features/carlu/assets";
 import { buildWhatsAppUrl } from "../../lib/whatsapp";
 
 const highlights = [
@@ -11,19 +13,14 @@ const highlights = [
 ];
 
 export function HeroSection() {
+  const [portraitSrc, setPortraitSrc] = useState(carluAssets.portraitScissors);
+
   return (
-    <section
-      className="relative min-h-[88svh] overflow-hidden bg-black"
-      style={{
-        backgroundImage:
-          "linear-gradient(90deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.76) 44%, rgba(0,0,0,0.28) 100%), url('/assets/brand/studio-carlu-logo.png')",
-        backgroundPosition: "center right",
-        backgroundSize: "cover",
-      }}
-    >
+    <section className="relative min-h-[88svh] overflow-hidden bg-black">
+      <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(0,0,0,0.98),rgba(8,8,8,0.9)_48%,rgba(36,51,35,0.55))]" />
       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent" />
-      <div className="relative mx-auto flex min-h-[88svh] max-w-7xl items-center px-4 py-16 sm:px-6 lg:px-8">
-        <div className="max-w-3xl">
+      <div className="relative mx-auto grid min-h-[88svh] max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:px-8">
+        <div>
           <motion.p
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
@@ -82,6 +79,26 @@ export function HeroSection() {
             })}
           </div>
         </div>
+
+        <motion.figure
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.82, delay: 0.16 }}
+          className="relative mx-auto w-full max-w-xl overflow-hidden rounded-lg border border-pearl/10 bg-white/[0.035] shadow-goldGlow"
+        >
+          <img
+            src={portraitSrc}
+            alt="Carlu, profissional da Studio Carlu Styles, segurando ferramenta de cabelo"
+            className="aspect-[4/5] w-full object-cover"
+            onError={() => setPortraitSrc(carluAssets.logoFallback)}
+          />
+          <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/78 to-transparent p-6">
+            <p className="font-ui text-sm font-semibold text-gold">Carlu</p>
+            <p className="mt-1 font-body text-sm text-pearl/72">
+              assinatura profissional, cuidado tecnico e acabamento premium
+            </p>
+          </figcaption>
+        </motion.figure>
       </div>
     </section>
   );

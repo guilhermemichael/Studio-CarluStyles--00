@@ -1,0 +1,13 @@
+[project]
+name = "studio-carlu-styles-backend"
+version = "0.1.0"
+description = "Backend Django + FastAPI para o ecossistema Studio Carlu Styles."
+requires-python = ">=3.12"
+
+[tool.ruff]
+line-length = 96
+target-version = "py312"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings.dev"
+python_files = ["tests.py", "test_*.py", "*_tests.py"]

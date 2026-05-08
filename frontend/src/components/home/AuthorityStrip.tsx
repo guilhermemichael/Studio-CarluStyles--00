@@ -1,15 +1,15 @@
-import { FlaskConical, Gem, Scissors, ShieldCheck } from "lucide-react";
+import { Gem, Scissors, ShieldCheck, Sparkles } from "lucide-react";
 
 const items = [
   {
     icon: Scissors,
-    title: "Atelier capilar",
-    body: "Procedimentos conduzidos com leitura estética, acabamento e técnica.",
+    title: "Studio capilar",
+    body: "Serviços conduzidos com leitura capilar, acabamento e técnica.",
   },
   {
-    icon: FlaskConical,
-    title: "Beauty lab",
-    body: "Tratamentos com linhas profissionais e protocolos orientados ao fio.",
+    icon: Sparkles,
+    title: "Tratamentos profissionais",
+    body: "Linhas profissionais e cuidados personalizados conforme cada fio.",
   },
   {
     icon: ShieldCheck,
@@ -18,8 +18,8 @@ const items = [
   },
   {
     icon: Gem,
-    title: "Luxo humano",
-    body: "Sofisticação suave, acolhedora e com presença autoral.",
+    title: "Sofisticação natural",
+    body: "Experiência elegante, acolhedora e profissional.",
   },
 ];
 

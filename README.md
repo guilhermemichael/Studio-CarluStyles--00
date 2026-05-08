@@ -23,7 +23,7 @@ Slogan: Beleza técnica com sofisticação e cuidado premium.
 
 ## Funcionalidades iniciais
 
-- Home premium com identidade Luxury Beauty Lab
+- Home premium com identidade Studio Carlu Styles
 - Catálogo de serviços e tratamentos
 - Precificação fixa, por comprimento, por faixa e sob avaliação
 - Calculadora de preço com manequim digital
@@ -70,6 +70,12 @@ Endpoints:
 
 O caminho mais rápido recomendado está em `docs/hosting-vercel-render.md`.
 O caminho VPS com Docker Compose está em `docs/hosting.md`.
+
+## Deploy
+
+Frontend em produção:
+
+https://studio-carlu-styles.vercel.app/
 
 Resumo:
 

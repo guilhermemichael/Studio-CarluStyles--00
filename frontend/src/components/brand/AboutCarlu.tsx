@@ -1,7 +1,8 @@
-import { Award, HeartHandshake, Microscope } from "lucide-react";
+import { Award, HeartHandshake, Instagram, Microscope } from "lucide-react";
 import { useState } from "react";
 
 import { carluAssets } from "../../features/carlu/assets";
+import { env } from "../../lib/env";
 
 const points = [
   {
@@ -40,14 +41,22 @@ export function AboutCarlu() {
         <div>
           <p className="font-ui text-sm font-semibold text-gold">Sobre a Studio</p>
           <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
-            Um atelier capilar com técnica, higiene visual e sofisticação suave.
+            Um espaço de beleza especializado em cuidados capilares.
           </h2>
           <p className="mt-6 font-body text-sm leading-7 text-pearl/68">
-            No Studio Carlu Styles, cada atendimento é conduzido com técnica, cuidado
-            e sofisticação. Unimos diagnóstico capilar, produtos profissionais e
-            acabamento estético refinado para entregar resultados personalizados em
-            coloração, luzes, mechas, tratamentos, finalizações e transformações.
+            O Studio Carlu Styles é um espaço de beleza especializado em cuidados
+            capilares, tratamentos, químicas, finalizações e transformações, unindo
+            técnica, sofisticação e cuidado personalizado em cada atendimento.
           </p>
+          <a
+            href={env.instagramUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-full border border-pearl/15 px-5 font-ui text-sm font-semibold text-pearl transition hover:border-gold hover:text-gold"
+          >
+            <Instagram size={18} aria-hidden="true" />
+            @studio_carlustyles
+          </a>
           <div className="mt-8 grid gap-4">
             {points.map((point) => {
               const Icon = point.icon;

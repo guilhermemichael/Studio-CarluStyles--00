@@ -13,10 +13,10 @@ Paleta:
 Direção atualizada:
 
 ```text
-Luxury Beauty Lab
+Studio capilar premium
 + Soft Feminine Premium
 + Rose Gold Editorial
-+ Professional Hair Atelier
++ Serviços capilares profissionais
 ```
 
 O projeto deve evitar neon, estética gamer, rosa infantil, excesso de brilho artificial e visual genérico de template.

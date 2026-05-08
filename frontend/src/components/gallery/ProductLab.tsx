@@ -8,7 +8,7 @@ export function ProductLab() {
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
           <div>
-            <p className="font-ui text-sm font-semibold text-roseGold">Laboratório capilar</p>
+            <p className="font-ui text-sm font-semibold text-roseGold">Produtos profissionais</p>
             <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
               Produtos reais, protocolos técnicos e resultado com assinatura.
             </h2>

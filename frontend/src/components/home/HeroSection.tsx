@@ -27,7 +27,7 @@ export function HeroSection() {
             transition={{ duration: 0.6 }}
             className="font-ui text-sm font-semibold text-gold"
           >
-            Luxury Beauty Lab
+            Studio capilar premium
           </motion.p>
 
           <motion.h1
@@ -95,7 +95,7 @@ export function HeroSection() {
           <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/78 to-transparent p-6">
             <p className="font-ui text-sm font-semibold text-gold">Carlu</p>
             <p className="mt-1 font-body text-sm text-pearl/72">
-              assinatura profissional, cuidado tecnico e acabamento premium
+              assinatura profissional, cuidado técnico e acabamento premium
             </p>
           </figcaption>
         </motion.figure>

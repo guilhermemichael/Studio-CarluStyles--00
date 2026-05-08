@@ -1,4 +1,4 @@
-import { MapPin, MessageCircle, Navigation } from "lucide-react";
+import { Instagram, MapPin, MessageCircle, Navigation } from "lucide-react";
 
 import { env } from "../../lib/env";
 import { buildWhatsAppUrl } from "../../lib/whatsapp";
@@ -10,7 +10,7 @@ export function LocationCta() {
         <div>
           <p className="font-ui text-sm font-semibold text-roseGold">Localização</p>
           <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
-            Atendimento local com experiência de marca premium.
+            Atendimento local com cuidado profissional.
           </h2>
           <p className="mt-5 max-w-2xl font-body text-sm leading-7 text-black/64">
             Confirme o melhor horário pelo WhatsApp e receba orientação de chegada
@@ -19,10 +19,21 @@ export function LocationCta() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
               href={env.googleMapsUrl || "#"}
+              target="_blank"
+              rel="noreferrer"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-black px-6 font-ui text-sm font-semibold text-pearl transition hover:bg-graphite"
             >
               <Navigation size={18} aria-hidden="true" />
               Como chegar
+            </a>
+            <a
+              href={env.instagramUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-black/15 px-6 font-ui text-sm font-semibold text-black transition hover:border-roseGold hover:text-roseGold"
+            >
+              <Instagram size={18} aria-hidden="true" />
+              @studio_carlustyles
             </a>
             <a
               href={buildWhatsAppUrl({})}
@@ -52,6 +63,10 @@ export function LocationCta() {
             <div className="flex justify-between gap-4">
               <dt className="text-black/54">Canal principal</dt>
               <dd className="font-semibold">WhatsApp</dd>
+            </div>
+            <div className="flex justify-between gap-4">
+              <dt className="text-black/54">Instagram</dt>
+              <dd className="font-semibold">@studio_carlustyles</dd>
             </div>
           </dl>
         </div>

@@ -57,7 +57,7 @@ export function ServiceCard({ service }: { service: Service }) {
         className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-pearl/15 px-4 font-ui text-sm font-semibold text-pearl transition hover:border-gold hover:text-gold"
       >
         <MessageCircle size={17} aria-hidden="true" />
-        Consultar
+        Agendar horário
       </a>
     </article>
   );

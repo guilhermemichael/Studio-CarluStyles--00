@@ -1,7 +1,8 @@
-import { Menu, MessageCircle, Scissors, X } from "lucide-react";
+import { Instagram, MapPin, Menu, MessageCircle, Scissors, X } from "lucide-react";
 import { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 
+import { env } from "../../lib/env";
 import { buildWhatsAppUrl } from "../../lib/whatsapp";
 
 const links = [
@@ -45,13 +46,24 @@ export function SiteShell() {
             ))}
           </nav>
 
-          <a
-            href={buildWhatsAppUrl({})}
-            className="hidden min-h-11 items-center gap-2 rounded-full bg-gold px-5 font-ui text-sm font-semibold text-black transition hover:bg-champagne lg:inline-flex"
-          >
-            <MessageCircle size={18} aria-hidden="true" />
-            Agendar
-          </a>
+          <div className="hidden items-center gap-3 lg:flex">
+            <a
+              href={env.instagramUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram Studio Carlu Styles"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-pearl/15 text-pearl transition hover:border-gold hover:text-gold"
+            >
+              <Instagram size={18} aria-hidden="true" />
+            </a>
+            <a
+              href={buildWhatsAppUrl({})}
+              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-gold px-5 font-ui text-sm font-semibold text-black transition hover:bg-champagne"
+            >
+              <MessageCircle size={18} aria-hidden="true" />
+              Agendar pelo WhatsApp
+            </a>
+          </div>
 
           <button
             type="button"
@@ -97,8 +109,26 @@ export function SiteShell() {
             <Link to="/politica-de-privacidade" className="font-ui text-sm text-pearl/62 hover:text-gold">
               Política de privacidade
             </Link>
+            <a
+              href={env.googleMapsUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 font-ui text-sm text-pearl/62 hover:text-gold"
+            >
+              <MapPin size={15} aria-hidden="true" />
+              Como chegar
+            </a>
+            <a
+              href={env.instagramUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 font-ui text-sm text-pearl/62 hover:text-gold"
+            >
+              <Instagram size={15} aria-hidden="true" />
+              @studio_carlustyles
+            </a>
             <a href={buildWhatsAppUrl({})} className="font-ui text-sm text-gold hover:text-champagne">
-              WhatsApp
+              Agendar pelo WhatsApp
             </a>
           </div>
         </div>

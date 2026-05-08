@@ -81,7 +81,7 @@ export function PriceCalculator() {
             className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gold px-6 font-ui text-sm font-semibold text-black transition hover:bg-champagne"
           >
             <MessageCircle size={18} aria-hidden="true" />
-            Agendar avaliação
+            Agendar pelo WhatsApp
           </a>
         </div>
 

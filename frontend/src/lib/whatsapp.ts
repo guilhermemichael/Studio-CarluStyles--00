@@ -27,12 +27,10 @@ export function buildWhatsAppMessage(payload: WhatsAppPayload): string {
 }
 
 export function buildWhatsAppUrl(payload: WhatsAppPayload): string {
-  const message = buildWhatsAppMessage(payload);
-  const number = env.whatsappNumber.replace(/\D/g, "");
-
-  if (!number) {
-    return `https://wa.me/?text=${message}`;
+  if (env.whatsappUrl) {
+    return env.whatsappUrl;
   }
 
-  return `https://wa.me/${number}?text=${message}`;
+  const message = buildWhatsAppMessage(payload);
+  return `https://wa.me/?text=${message}`;
 }

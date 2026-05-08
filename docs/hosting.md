@@ -70,7 +70,7 @@ Preencha no `.env`:
 - `ACME_EMAIL`
 - `DJANGO_SECRET_KEY`
 - `POSTGRES_PASSWORD`
-- `VITE_WHATSAPP_NUMBER`
+- `VITE_WHATSAPP_URL`
 - `VITE_GOOGLE_MAPS_URL`
 
 ## 5. Subir a aplicação

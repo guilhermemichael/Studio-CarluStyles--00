@@ -4,14 +4,14 @@ O Studio Carlu Styles nasce como monorepo com três frentes:
 
 - `frontend`: React + TypeScript + Vite + Tailwind para a experiência pública.
 - `backend`: Django para admin/modelos e FastAPI para endpoints públicos rápidos.
-- `infra`: Nginx, PostgreSQL, Redis e scripts operacionais.
+- `infra`: Caddy, Nginx, PostgreSQL, Redis e scripts operacionais.
 
 Fluxo macro:
 
 ```text
-Cliente -> Nginx -> Frontend
-                 -> FastAPI
-                 -> Django Admin
+Cliente -> Caddy HTTPS -> Nginx -> Frontend
+                               -> FastAPI
+                               -> Django Admin
 FastAPI/Django -> PostgreSQL
 FastAPI/Django -> Redis
 ```

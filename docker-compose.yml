@@ -71,14 +71,18 @@ services:
   frontend:
     build:
       context: ./frontend
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-/api}
+        VITE_WHATSAPP_NUMBER: ${VITE_WHATSAPP_NUMBER:-}
+        VITE_INSTAGRAM_URL: ${VITE_INSTAGRAM_URL:-https://www.instagram.com/studio_carlustyles}
+        VITE_GOOGLE_MAPS_URL: ${VITE_GOOGLE_MAPS_URL:-}
     networks:
       - internal
 
   nginx:
     image: nginx:1.27-alpine
-    ports:
-      - "80:80"
-      - "443:443"
+    expose:
+      - "80"
     volumes:
       - ./infra/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./infra/nginx/conf.d:/etc/nginx/conf.d:ro
@@ -93,11 +97,29 @@ services:
       - internal
       - public
 
+  caddy:
+    image: caddy:2-alpine
+    env_file:
+      - .env
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./infra/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - nginx
+    networks:
+      - public
+
 volumes:
   postgres_data:
   redis_data:
   media_volume:
   static_volume:
+  caddy_data:
+  caddy_config:
 
 networks:
   internal:

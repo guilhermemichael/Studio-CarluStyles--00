@@ -1,0 +1,22 @@
+{
+	email {$ACME_EMAIL}
+}
+
+studiocarlustyles.com.br, www.studiocarlustyles.com.br {
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+		X-Frame-Options "DENY"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "camera=(), microphone=(), geolocation=(self)"
+	}
+
+	reverse_proxy nginx:80
+}
+
+http://localhost {
+	encode zstd gzip
+	reverse_proxy nginx:80
+}

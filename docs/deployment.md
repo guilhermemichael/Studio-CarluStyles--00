@@ -4,7 +4,7 @@ Ambiente esperado:
 
 - Docker e Docker Compose.
 - Domínio apontando para o servidor.
-- Certificados TLS configurados no Nginx ou em camada externa.
+- Certificados TLS emitidos automaticamente pelo Caddy.
 - `.env` com segredos reais.
 
 Fluxo:
@@ -13,6 +13,8 @@ Fluxo:
 cp .env.example .env
 docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d
 ```
+
+Para o passo a passo completo de hospedagem, use `docs/hosting.md`.
 
 Checklist mínimo:
 

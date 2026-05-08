@@ -66,6 +66,17 @@ Endpoints:
 - API Health: http://localhost/api/health
 - API Docs: http://localhost/api/docs
 
+## Hospedagem
+
+O caminho de produção recomendado está em `docs/hosting.md`.
+
+Resumo:
+
+```bash
+cp .env.production.example .env
+sh infra/scripts/deploy.sh
+```
+
 ## Observação de ativos
 
 Os logos, a tabela visual de comprimento e as fotos de produtos foram adicionados em `frontend/public/assets`. As fotos institucionais da Carlu que aparecem no material de referência ainda precisam ser salvas como arquivos no workspace para entrarem no hero editorial definitivo.

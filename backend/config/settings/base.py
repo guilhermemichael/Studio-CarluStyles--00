@@ -68,16 +68,23 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 ASGI_APPLICATION = "config.asgi.application"
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": env("POSTGRES_DB", default="studiocarlu"),
-        "USER": env("POSTGRES_USER", default="studiocarlu"),
-        "PASSWORD": env("POSTGRES_PASSWORD", default="studiocarlu"),
-        "HOST": env("POSTGRES_HOST", default="localhost"),
-        "PORT": env("POSTGRES_PORT", default="5432"),
+DATABASE_URL = env("DATABASE_URL", default="")
+
+if DATABASE_URL:
+    DATABASES = {
+        "default": env.db("DATABASE_URL"),
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": env("POSTGRES_DB", default="studiocarlu"),
+            "USER": env("POSTGRES_USER", default="studiocarlu"),
+            "PASSWORD": env("POSTGRES_PASSWORD", default="studiocarlu"),
+            "HOST": env("POSTGRES_HOST", default="localhost"),
+            "PORT": env("POSTGRES_PORT", default="5432"),
+        }
+    }
 
 CACHES = {
     "default": {

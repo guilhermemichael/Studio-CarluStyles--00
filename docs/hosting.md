@@ -1,6 +1,17 @@
 # Hospedagem
 
-## Caminho recomendado
+## Caminho recomendado para publicar rápido
+
+Use Vercel + Render. O passo a passo está em `docs/hosting-vercel-render.md`.
+
+```text
+Frontend React/Vite -> Vercel
+Backend Django + FastAPI -> Render
+PostgreSQL -> Render
+Redis/Key Value -> Render
+```
+
+## Caminho VPS
 
 Para esta stack, use uma VPS Ubuntu com Docker Compose. A aplicação tem frontend,
 Django, FastAPI, PostgreSQL, Redis, Nginx interno e Caddy externo para HTTPS

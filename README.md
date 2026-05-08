@@ -68,7 +68,8 @@ Endpoints:
 
 ## Hospedagem
 
-O caminho de produção recomendado está em `docs/hosting.md`.
+O caminho mais rápido recomendado está em `docs/hosting-vercel-render.md`.
+O caminho VPS com Docker Compose está em `docs/hosting.md`.
 
 Resumo:
 

@@ -14,4 +14,6 @@ RUN pip install --no-cache-dir -r requirements/base.txt
 
 COPY . .
 
-EXPOSE 8000 8001
+EXPOSE 8000
+
+CMD ["sh", "-c", "python manage.py migrate && python manage.py seed_services && python manage.py collectstatic --noinput && gunicorn config.asgi:application -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:${PORT:-8000}"]

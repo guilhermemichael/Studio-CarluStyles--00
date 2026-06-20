@@ -1,37 +1,46 @@
 import { hairLengths } from "../../features/services/catalog";
+import { ResponsiveImage } from "../ui/ResponsiveImage";
 
 export function HairLengthGuide() {
   return (
-    <section className="bg-black px-4 py-20 text-pearl sm:px-6 lg:px-8">
-      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-        <div>
-          <p className="font-ui text-sm font-semibold text-gold">Tabela de comprimento</p>
-          <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
-            Entenda o tamanho do seu cabelo.
-          </h2>
-          <p className="mt-5 max-w-2xl font-body text-sm leading-7 text-pearl/65">
-            A classificação ajuda a estimar valores de serviços que variam conforme
-            comprimento, volume, densidade e histórico capilar.
+    <section className="bg-obsidian px-6 py-28 text-pearl lg:px-16 lg:py-36">
+      <div className="mx-auto max-w-[1440px]">
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-5">
+            <p className="font-ui text-xs font-semibold uppercase tracking-[0.25em] text-gold">
+              Comprimento
+            </p>
+            <h2 className="mt-4 font-display text-5xl leading-tight">
+              Entenda o tamanho antes da estimativa.
+            </h2>
+          </div>
+          <p className="max-w-2xl font-body text-sm leading-7 text-pearl/62 lg:col-span-7">
+            A classificação reduz ruído no atendimento e ajuda a alinhar valores de
+            serviços que dependem de comprimento, volume e histórico capilar.
           </p>
+        </div>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-2">
-            {hairLengths.map((item) => (
-              <article key={item.id} className="rounded-lg border border-pearl/10 bg-white/[0.035] p-5">
-                <h3 className="font-display text-3xl text-gold">{item.label}</h3>
-                <p className="mt-2 font-body text-sm leading-6 text-pearl/68">{item.description}</p>
+        <div className="mt-10 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div className="grid gap-3 sm:grid-cols-4">
+            {hairLengths.map((item, index) => (
+              <article key={item.id} className="border-t border-pearl/10 pt-5">
+                <p className="font-ui text-xs uppercase tracking-[0.18em] text-gold">
+                  0{index + 1}
+                </p>
+                <h3 className="mt-3 font-display text-3xl text-pearl">{item.label}</h3>
+                <p className="mt-2 font-body text-sm leading-6 text-pearl/58">{item.description}</p>
               </article>
             ))}
           </div>
-        </div>
 
-        <figure className="overflow-hidden rounded-lg border border-pearl/10 bg-white/[0.035]">
-          <img
+          <ResponsiveImage
             src="/assets/guide/hair-length-guide.png"
             alt="Tabela visual de tamanhos de cabelo da Studio Carlu Styles"
-            loading="lazy"
-            className="h-full w-full object-cover"
+            className="rounded-md border border-pearl/10"
+            imageClassName="object-contain"
+            sizes="(min-width: 1024px) 40vw, 100vw"
           />
-        </figure>
+        </div>
       </div>
     </section>
   );

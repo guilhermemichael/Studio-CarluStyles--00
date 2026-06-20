@@ -1,5 +1,6 @@
 export const typography = {
   display: "Cormorant Garamond, serif",
-  body: "Montserrat, sans-serif",
+  accent: "Instrument Serif, serif",
+  body: "Inter, sans-serif",
   interface: "Inter, sans-serif",
 };

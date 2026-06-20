@@ -1,52 +1,47 @@
-import { ArrowRight, MessageCircle, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowDown, ArrowRight, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-import { ButtonLink } from "../ui/Button";
 import { carluAssets } from "../../features/carlu/assets";
 import { buildWhatsAppUrl } from "../../lib/whatsapp";
-
-const highlights = [
-  { label: "Diagnóstico capilar", icon: ShieldCheck },
-  { label: "Tratamentos profissionais", icon: Sparkles },
-  { label: "Finalização premium", icon: ArrowRight },
-];
+import { ButtonLink } from "../ui/Button";
 
 export function HeroSection() {
   const [portraitSrc, setPortraitSrc] = useState(carluAssets.portraitScissors);
 
   return (
-    <section className="relative min-h-[88svh] overflow-hidden bg-black">
-      <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(0,0,0,0.98),rgba(8,8,8,0.9)_48%,rgba(36,51,35,0.55))]" />
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent" />
-      <div className="relative mx-auto grid min-h-[88svh] max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:px-8">
-        <div>
+    <section className="relative min-h-[92svh] overflow-hidden bg-obsidian text-pearl lg:min-h-screen">
+      <div className="absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(14,14,14,0.98),rgba(14,14,14,0.9)_44%,rgba(14,14,14,0.22))]" />
+      <div className="relative mx-auto grid min-h-[92svh] max-w-[1440px] gap-12 px-6 pb-14 pt-28 lg:min-h-screen lg:grid-cols-12 lg:items-center lg:px-16">
+        <div className="z-10 lg:col-span-5">
           <motion.p
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="font-ui text-sm font-semibold text-gold"
+            className="font-ui text-xs font-semibold uppercase tracking-[0.25em] text-gold"
           >
-            Studio capilar premium
+            Studio Carlu Styles
           </motion.p>
 
           <motion.h1
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.72, delay: 0.06 }}
-            className="mt-5 max-w-3xl font-display text-5xl leading-none text-pearl sm:text-6xl lg:text-7xl"
+            className="mt-6 max-w-4xl font-display text-5xl leading-[0.96] text-pearl sm:text-6xl lg:text-7xl"
           >
-            Studio Carlu Styles
+            Precisão que transforma.
+            <br />
+            Sofisticação que permanece.
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.72, delay: 0.12 }}
-            className="mt-6 max-w-2xl font-body text-lg leading-8 text-pearl/82"
+            className="mt-7 max-w-xl font-body text-base leading-8 text-pearl/72"
           >
-            Beleza técnica com sofisticação e cuidado premium em transformações
-            capilares, tratamentos, luzes, mechas e finalizações profissionais.
+            Uma experiência de beleza construída com técnica, sensibilidade e
+            excelência em cada detalhe.
           </motion.p>
 
           <motion.div
@@ -56,49 +51,40 @@ export function HeroSection() {
             className="mt-9 flex flex-col gap-3 sm:flex-row"
           >
             <ButtonLink href={buildWhatsAppUrl({})} icon={<MessageCircle size={18} aria-hidden="true" />}>
-              Agendar pelo WhatsApp
+              Reservar experiência
             </ButtonLink>
             <ButtonLink href="/precos" tone="ghost" icon={<ArrowRight size={18} aria-hidden="true" />}>
-              Ver serviços e valores
+              Explorar serviços
             </ButtonLink>
           </motion.div>
 
-          <div className="mt-12 grid gap-3 sm:grid-cols-3">
-            {highlights.map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <div
-                  key={item.label}
-                  className="flex items-center gap-3 rounded-lg border border-pearl/12 bg-black/45 px-4 py-3 backdrop-blur"
-                >
-                  <Icon className="text-gold" size={18} aria-hidden="true" />
-                  <span className="font-ui text-sm text-pearl/72">{item.label}</span>
-                </div>
-              );
-            })}
-          </div>
+          <p className="mt-10 max-w-lg border-l border-gold/60 pl-5 font-ui text-xs uppercase leading-6 tracking-[0.18em] text-pearl/58">
+            Atendimento personalizado · técnicas premium · resultados exclusivos
+          </p>
         </div>
 
         <motion.figure
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.82, delay: 0.16 }}
-          className="relative mx-auto w-full max-w-xl overflow-hidden rounded-lg border border-pearl/10 bg-white/[0.035] shadow-goldGlow"
+          className="absolute inset-0 mx-auto w-full overflow-hidden bg-white/[0.035] opacity-35 lg:relative lg:inset-auto lg:col-span-7 lg:h-[82vh] lg:max-w-2xl lg:rounded-md lg:border lg:border-pearl/10 lg:opacity-100"
         >
           <img
             src={portraitSrc}
-            alt="Carlu, profissional da Studio Carlu Styles, segurando ferramenta de cabelo"
-            className="aspect-[4/5] w-full object-cover"
+            alt="Carlu, profissional da Studio Carlu Styles, em atendimento técnico"
+            className="h-full w-full object-cover lg:min-h-[520px]"
             onError={() => setPortraitSrc(carluAssets.logoFallback)}
           />
-          <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/78 to-transparent p-6">
-            <p className="font-ui text-sm font-semibold text-gold">Carlu</p>
-            <p className="mt-1 font-body text-sm text-pearl/72">
-              assinatura profissional, cuidado técnico e acabamento premium
-            </p>
-          </figcaption>
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(14,14,14,0.22))]" />
         </motion.figure>
+
+        <a
+          href="#manifesto"
+          className="absolute bottom-5 left-6 z-20 inline-flex items-center gap-2 font-ui text-xs uppercase tracking-[0.2em] text-pearl/48 transition duration-500 hover:text-gold lg:left-16"
+        >
+          <ArrowDown size={15} aria-hidden="true" />
+          Scroll
+        </a>
       </div>
     </section>
   );

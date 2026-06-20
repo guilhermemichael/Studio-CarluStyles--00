@@ -33,15 +33,19 @@ Variáveis:
 
 ```env
 VITE_API_BASE_URL=https://api-studio-carlu.onrender.com/api
+VITE_SITE_URL=https://studio-carlu-styles.vercel.app
 VITE_WHATSAPP_URL=https://wa.me/5583981580195?text=Ol%25C3%25A1%252C+gostaria+de+agendar+um+hor%25C3%25A1rio%2521+
 VITE_INSTAGRAM_URL=https://www.instagram.com/studio_carlustyles?igsh=bjZyOWFqdW80cm9j
 VITE_GOOGLE_MAPS_URL=https://maps.app.goo.gl/TzdoJmZgWnTHzkNh9?g_st=ic
+VITE_ADMIN_URL=https://api-studio-carlu.onrender.com/admin/
 ```
 
 Depois de configurar domínio próprio:
 
 ```env
 VITE_API_BASE_URL=https://api.studiocarlustyles.com.br/api
+VITE_SITE_URL=https://studiocarlustyles.com.br
+VITE_ADMIN_URL=https://api.studiocarlustyles.com.br/admin/
 ```
 
 O arquivo `frontend/vercel.json` já inclui fallback de SPA para React Router.
@@ -118,4 +122,5 @@ Atualize na Vercel:
 
 ```env
 VITE_API_BASE_URL=https://api.studiocarlustyles.com.br/api
+VITE_ADMIN_URL=https://api.studiocarlustyles.com.br/admin/
 ```

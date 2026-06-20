@@ -1,0 +1,49 @@
+{% extends "admin/change_list.html" %}
+
+{% block content_title %}
+  {{ block.super }}
+  <div style="display:grid;gap:16px;margin:18px 0 8px;">
+    <div style="border:1px solid var(--hairline-color);border-radius:4px;padding:16px;background:var(--body-bg);">
+      <p style="margin:0 0 6px;color:var(--body-quiet-color);font-size:12px;text-transform:uppercase;letter-spacing:.08em;">
+        Tendências da calculadora em {{ trend_month }}
+      </p>
+      <strong style="font-size:28px;">{{ trend_dashboard.total }}</strong>
+      <span style="color:var(--body-quiet-color);">simulações anônimas registradas</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
+      <section style="border:1px solid var(--hairline-color);border-radius:4px;padding:16px;">
+        <h2 style="margin-top:0;">Serviços mais procurados</h2>
+        {% for item in trend_dashboard.services %}
+          <p style="display:flex;justify-content:space-between;border-bottom:1px solid var(--hairline-color);padding:7px 0;margin:0;">
+            <span>{{ item.service_name }}</span>
+            <strong>{{ item.total }}</strong>
+          </p>
+        {% empty %}
+          <p style="color:var(--body-quiet-color);">Ainda sem dados neste mês.</p>
+        {% endfor %}
+      </section>
+      <section style="border:1px solid var(--hairline-color);border-radius:4px;padding:16px;">
+        <h2 style="margin-top:0;">Comprimentos calculados</h2>
+        {% for item in trend_dashboard.lengths %}
+          <p style="display:flex;justify-content:space-between;border-bottom:1px solid var(--hairline-color);padding:7px 0;margin:0;">
+            <span>{{ item.hair_length }}</span>
+            <strong>{{ item.total }}</strong>
+          </p>
+        {% empty %}
+          <p style="color:var(--body-quiet-color);">Ainda sem dados neste mês.</p>
+        {% endfor %}
+      </section>
+      <section style="border:1px solid var(--hairline-color);border-radius:4px;padding:16px;">
+        <h2 style="margin-top:0;">Objetivos mais citados</h2>
+        {% for item in trend_dashboard.goals %}
+          <p style="display:flex;justify-content:space-between;border-bottom:1px solid var(--hairline-color);padding:7px 0;margin:0;">
+            <span>{{ item.goal }}</span>
+            <strong>{{ item.total }}</strong>
+          </p>
+        {% empty %}
+          <p style="color:var(--body-quiet-color);">Ainda sem dados neste mês.</p>
+        {% endfor %}
+      </section>
+    </div>
+  </div>
+{% endblock %}

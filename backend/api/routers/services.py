@@ -1,10 +1,27 @@
 from fastapi import APIRouter
+from django.core.cache import cache
 
 from apps.pricing.services import CurrencyFormatter, ServicePricePresenter
 from apps.services_catalog.seed_data import INITIAL_SERVICES
 from apps.services_catalog.selectors import ServiceSelector
 
 router = APIRouter(prefix="/services", tags=["services"])
+CACHE_KEY = "api:services:list:v1"
+CACHE_TIMEOUT_SECONDS = 60 * 60 * 12
+
+
+def _cache_get(key: str):
+    try:
+        return cache.get(key)
+    except Exception:
+        return None
+
+
+def _cache_set(key: str, payload: dict) -> None:
+    try:
+        cache.set(key, payload, CACHE_TIMEOUT_SECONDS)
+    except Exception:
+        return None
 
 
 def _fallback_payload() -> dict:
@@ -79,6 +96,11 @@ def _present_seed_price(service: dict, formatter: CurrencyFormatter) -> dict:
 
 @router.get("/")
 async def list_services():
+    cached = _cache_get(CACHE_KEY)
+
+    if cached is not None:
+        return cached
+
     selector = ServiceSelector()
     presenter = ServicePricePresenter(CurrencyFormatter())
 
@@ -99,6 +121,10 @@ async def list_services():
                 }
             )
 
-        return {"items": payload, "source": "database"}
+        response = {"items": payload, "source": "database"}
     except Exception:
-        return _fallback_payload()
+        response = _fallback_payload()
+
+    _cache_set(CACHE_KEY, response)
+
+    return response

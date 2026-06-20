@@ -1,15 +1,39 @@
 from fastapi import APIRouter, HTTPException
+from django.core.cache import cache
 
+from api.schemas.pricing import PriceSimulationCreateSchema
 from apps.pricing.enums import HAIR_LENGTH_DESCRIPTIONS, HAIR_LENGTH_LABELS, HairLength
+from apps.pricing.models import PriceSimulation
 from apps.pricing.services import CurrencyFormatter
 from apps.services_catalog.seed_data import INITIAL_SERVICES
 
 router = APIRouter(prefix="/pricing", tags=["pricing"])
+CACHE_TIMEOUT_SECONDS = 60 * 60 * 12
+
+
+def _cache_get(key: str):
+    try:
+        return cache.get(key)
+    except Exception:
+        return None
+
+
+def _cache_set(key: str, payload: dict) -> None:
+    try:
+        cache.set(key, payload, CACHE_TIMEOUT_SECONDS)
+    except Exception:
+        return None
 
 
 @router.get("/hair-lengths")
 async def list_hair_lengths() -> dict:
-    return {
+    cache_key = "api:pricing:hair-lengths:v1"
+    cached = _cache_get(cache_key)
+
+    if cached is not None:
+        return cached
+
+    payload = {
         "items": [
             {
                 "id": length.value,
@@ -19,10 +43,19 @@ async def list_hair_lengths() -> dict:
             for length in HairLength
         ]
     }
+    _cache_set(cache_key, payload)
+
+    return payload
 
 
 @router.get("/estimate")
 async def estimate_price(service_slug: str, hair_length: HairLength = HairLength.MEDIUM) -> dict:
+    cache_key = f"api:pricing:estimate:v1:{service_slug}:{hair_length.value}"
+    cached = _cache_get(cache_key)
+
+    if cached is not None:
+        return cached
+
     service = next((item for item in INITIAL_SERVICES if item["slug"] == service_slug), None)
 
     if service is None:
@@ -50,9 +83,27 @@ async def estimate_price(service_slug: str, hair_length: HairLength = HairLength
         if match is not None:
             display = formatter.format_brl(match["price"])
 
-    return {
+    payload = {
         "service": service["name"],
         "hairLength": hair_length.value,
         "mode": service["price_mode"],
         "display": display,
     }
+    _cache_set(cache_key, payload)
+
+    return payload
+
+
+@router.post("/simulations", status_code=201)
+async def record_price_simulation(payload: PriceSimulationCreateSchema) -> dict:
+    simulation = PriceSimulation.objects.create(
+        service_slug=payload.service_slug,
+        service_name=payload.service_name,
+        hair_length=payload.hair_length,
+        volume=payload.volume,
+        goal=payload.goal,
+        estimated_price=payload.estimated_price,
+        source=payload.source,
+    )
+
+    return {"id": simulation.id, "status": "recorded"}

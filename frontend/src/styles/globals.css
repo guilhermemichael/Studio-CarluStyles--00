@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,8 +6,8 @@
 
 :root {
   color-scheme: dark;
-  font-family: "Montserrat", system-ui, sans-serif;
-  background: #000000;
+  font-family: "Inter", system-ui, sans-serif;
+  background: #0e0e0e;
 }
 
 * {
@@ -22,7 +22,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #000000;
+  background: #0e0e0e;
 }
 
 img {
@@ -37,6 +37,6 @@ textarea {
 }
 
 ::selection {
-  background: rgba(212, 175, 55, 0.35);
-  color: #f8f4ef;
+  background: rgba(168, 138, 90, 0.35);
+  color: #f5f1ea;
 }

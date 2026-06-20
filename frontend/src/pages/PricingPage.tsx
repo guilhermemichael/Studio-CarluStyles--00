@@ -1,10 +1,14 @@
 import { PriceCalculator } from "../components/pricing/PriceCalculator";
 import { ServiceCard } from "../components/services/ServiceCard";
+import { pageMetadata } from "../features/seo/metadata";
+import { Seo } from "../features/seo/Seo";
+import { serviceCatalogSchema } from "../features/seo/structuredData";
 import { services } from "../features/services/catalog";
 
 export function PricingPage() {
   return (
     <>
+      <Seo {...pageMetadata.pricing} structuredData={serviceCatalogSchema()} />
       <PriceCalculator />
       <section className="bg-black px-4 py-16 text-pearl sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">

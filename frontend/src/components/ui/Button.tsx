@@ -12,7 +12,7 @@ type ButtonLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
 const tones: Record<ButtonTone, string> = {
   gold: "bg-gold text-black hover:bg-champagne",
   ghost:
-    "border border-pearl/25 bg-black/25 text-pearl hover:border-gold hover:text-gold",
+    "border border-pearl/20 bg-transparent text-pearl hover:border-gold hover:text-gold",
   dark: "border border-black/10 bg-black text-pearl hover:bg-graphite",
 };
 
@@ -26,7 +26,7 @@ export function ButtonLink({
   return (
     <a
       className={cn(
-        "inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 font-ui text-sm font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold",
+        "inline-flex min-h-12 items-center justify-center gap-2 rounded-md px-6 py-3 font-ui text-sm font-semibold transition-all duration-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold",
         tones[tone],
         className,
       )}

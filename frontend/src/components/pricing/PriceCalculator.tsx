@@ -1,5 +1,5 @@
 import { Calculator, MessageCircle } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { calculateServicePrice, getHairLengthLabel } from "../../features/pricing/pricing";
 import { hairLengths, services, type HairLengthId, type Service } from "../../features/services/catalog";
@@ -64,27 +64,24 @@ export function PriceCalculator() {
   const displayPrice = getAdjustedDisplay(selectedService, selectedLength, selectedVolume);
   const hairLengthLabel = getHairLengthLabel(selectedLength);
 
-  useEffect(() => {
-    const timer = window.setTimeout(() => {
-      void apiPost<{ id: number; status: string }, Record<string, string>>("/pricing/simulations", {
-        service_slug: selectedService.slug,
-        service_name: selectedService.name,
-        hair_length: hairLengthLabel,
-        volume: volume.label,
-        goal: goal.label,
-        estimated_price: displayPrice,
-        source: "price_experience",
-      }).catch(() => undefined);
-    }, 650);
-
-    return () => window.clearTimeout(timer);
-  }, [displayPrice, goal.label, hairLengthLabel, selectedService.name, selectedService.slug, volume.label]);
+  function recordSimulationIntent() {
+    void apiPost<{ id?: number; status: string }, Record<string, string>>("/pricing/simulations", {
+      service_slug: selectedService.slug,
+      service_name: selectedService.name,
+      hair_length: hairLengthLabel,
+      volume: volume.label,
+      goal: goal.label,
+      estimated_price: displayPrice,
+      source: "whatsapp_quote",
+      website: "",
+    }).catch(() => undefined);
+  }
 
   return (
-    <section className="bg-carbon px-6 py-28 text-pearl lg:px-16 lg:py-36">
+    <section className="bg-carbon px-6 py-32 text-pearl lg:px-16 lg:py-44">
       <div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-12 lg:items-center">
         <div className="lg:col-span-5">
-          <p className="font-ui text-xs font-semibold uppercase tracking-[0.25em] text-gold">
+          <p className="font-ui text-xs font-semibold uppercase text-gold">
             Calculadora concierge
           </p>
           <h2 className="mt-4 font-display text-5xl leading-tight">
@@ -96,7 +93,7 @@ export function PriceCalculator() {
           </p>
 
           <div className="mt-9 grid gap-7">
-            <label className="grid gap-3 font-ui text-xs font-semibold uppercase tracking-[0.18em] text-pearl/58">
+            <label className="grid gap-3 font-ui text-xs font-semibold uppercase text-pearl/58">
               01 Serviço
               <select
                 value={selectedServiceSlug}
@@ -112,7 +109,7 @@ export function PriceCalculator() {
             </label>
 
             <div>
-              <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-pearl/58">
+              <p className="font-ui text-xs font-semibold uppercase text-pearl/58">
                 02 Comprimento
               </p>
               <div className="mt-3 grid gap-2 sm:grid-cols-2">
@@ -120,6 +117,7 @@ export function PriceCalculator() {
                   <button
                     key={length.id}
                     type="button"
+                    aria-pressed={selectedLength === length.id}
                     onClick={() => setSelectedLength(length.id)}
                     className={[
                       "rounded-md border px-4 py-3 text-left transition duration-500",
@@ -136,7 +134,7 @@ export function PriceCalculator() {
             </div>
 
             <div>
-              <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-pearl/58">
+              <p className="font-ui text-xs font-semibold uppercase text-pearl/58">
                 03 Volume
               </p>
               <div className="mt-3 grid gap-2 sm:grid-cols-3">
@@ -144,6 +142,7 @@ export function PriceCalculator() {
                   <button
                     key={item.id}
                     type="button"
+                    aria-pressed={selectedVolume === item.id}
                     onClick={() => setSelectedVolume(item.id)}
                     className={[
                       "rounded-md border px-4 py-3 text-left transition duration-500",
@@ -160,7 +159,7 @@ export function PriceCalculator() {
             </div>
 
             <div>
-              <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-pearl/58">
+              <p className="font-ui text-xs font-semibold uppercase text-pearl/58">
                 04 Objetivo
               </p>
               <div className="mt-3 grid gap-2 sm:grid-cols-2">
@@ -168,6 +167,7 @@ export function PriceCalculator() {
                   <button
                     key={item.id}
                     type="button"
+                    aria-pressed={selectedGoal === item.id}
                     onClick={() => setSelectedGoal(item.id)}
                     className={[
                       "rounded-md border px-4 py-3 text-left transition duration-500",
@@ -207,6 +207,7 @@ export function PriceCalculator() {
               })}
               target="_blank"
               rel="noreferrer"
+              onClick={recordSimulationIntent}
               className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-gold px-6 font-ui text-sm font-semibold text-black transition duration-500 hover:bg-champagne"
             >
               <MessageCircle size={18} aria-hidden="true" />

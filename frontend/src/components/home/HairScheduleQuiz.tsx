@@ -68,9 +68,15 @@ export function HairScheduleQuiz() {
   const [answers, setAnswers] = useState<Answers>(initialAnswers);
   const [name, setName] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
+  const [website, setWebsite] = useState("");
   const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const diagnosis = useMemo(() => getDiagnosis(answers), [answers]);
+  const missingFields = [
+    !name.trim() ? "Informe seu nome." : "",
+    !whatsapp.trim() ? "Informe um WhatsApp válido com DDD." : "",
+    !consent ? "Aceite a política de privacidade para enviar." : "",
+  ].filter(Boolean);
 
   async function submitLead() {
     setStatus("sending");
@@ -89,6 +95,7 @@ export function HairScheduleQuiz() {
           .join("\n"),
         message: `Diagnóstico inicial: ${diagnosis}`,
         consent_privacy_policy: consent,
+        website,
       });
       setStatus("sent");
     } catch {
@@ -97,10 +104,10 @@ export function HairScheduleQuiz() {
   }
 
   return (
-    <section className="bg-pearl px-6 py-28 text-obsidian lg:px-16 lg:py-36">
+    <section className="bg-pearl px-6 py-32 text-obsidian lg:px-16 lg:py-44">
       <div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-12 lg:items-start">
         <div className="lg:col-span-5">
-          <p className="font-ui text-xs font-semibold uppercase tracking-[0.25em] text-roseGold">
+          <p className="font-ui text-xs font-semibold uppercase text-roseGold">
             Cronograma capilar
           </p>
           <h2 className="mt-4 font-display text-5xl leading-tight">
@@ -115,7 +122,7 @@ export function HairScheduleQuiz() {
         <div className="grid gap-7 lg:col-span-7">
           {questions.map((question, index) => (
             <fieldset key={question.id} className="border-t border-black/10 pt-6">
-              <legend className="font-ui text-xs font-semibold uppercase tracking-[0.16em] text-black/52">
+              <legend className="font-ui text-xs font-semibold uppercase text-black/52">
                 0{index + 1} {question.label}
               </legend>
               <div className="mt-4 grid gap-2 sm:grid-cols-3">
@@ -123,6 +130,7 @@ export function HairScheduleQuiz() {
                   <button
                     key={option.id}
                     type="button"
+                    aria-pressed={answers[question.id] === option.id}
                     onClick={() => setAnswers((current) => ({ ...current, [question.id]: option.id }))}
                     className={[
                       "rounded-md border px-4 py-3 text-left font-ui text-sm font-semibold transition duration-500",
@@ -139,24 +147,42 @@ export function HairScheduleQuiz() {
           ))}
 
           <div className="rounded-md border border-black/10 bg-white p-6">
-            <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-roseGold">
+            <p className="font-ui text-xs font-semibold uppercase text-roseGold">
               Diagnóstico inicial
             </p>
             <p className="mt-3 font-display text-3xl leading-tight">{diagnosis}</p>
 
+            <div className="mt-6 hidden">
+              <label>
+                Site
+                <input
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={website}
+                  onChange={(event) => setWebsite(event.target.value)}
+                />
+              </label>
+            </div>
+
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              <input
-                value={name}
-                onChange={(event) => setName(event.target.value)}
-                placeholder="Seu nome"
-                className="min-h-12 rounded-md border border-black/12 px-4 font-body text-sm outline-none transition duration-500 focus:border-roseGold"
-              />
-              <input
-                value={whatsapp}
-                onChange={(event) => setWhatsapp(event.target.value)}
-                placeholder="WhatsApp com DDD"
-                className="min-h-12 rounded-md border border-black/12 px-4 font-body text-sm outline-none transition duration-500 focus:border-roseGold"
-              />
+              <label className="grid gap-2 font-ui text-xs font-semibold uppercase text-black/52">
+                Nome
+                <input
+                  value={name}
+                  onChange={(event) => setName(event.target.value)}
+                  placeholder="Seu nome"
+                  className="min-h-12 rounded-md border border-black/12 px-4 font-body text-sm normal-case tracking-normal outline-none transition duration-500 focus:border-roseGold"
+                />
+              </label>
+              <label className="grid gap-2 font-ui text-xs font-semibold uppercase text-black/52">
+                WhatsApp
+                <input
+                  value={whatsapp}
+                  onChange={(event) => setWhatsapp(event.target.value)}
+                  placeholder="DDD + número"
+                  className="min-h-12 rounded-md border border-black/12 px-4 font-body text-sm normal-case tracking-normal outline-none transition duration-500 focus:border-roseGold"
+                />
+              </label>
             </div>
 
             <label className="mt-4 flex gap-3 font-body text-xs leading-5 text-black/60">
@@ -174,7 +200,7 @@ export function HairScheduleQuiz() {
               <button
                 type="button"
                 onClick={submitLead}
-                disabled={!name || !whatsapp || !consent || status === "sending"}
+                disabled={missingFields.length > 0 || status === "sending"}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-black px-6 font-ui text-sm font-semibold text-pearl transition duration-500 hover:bg-graphite disabled:cursor-not-allowed disabled:opacity-45"
               >
                 <Send size={18} aria-hidden="true" />
@@ -191,6 +217,13 @@ export function HairScheduleQuiz() {
               </a>
             </div>
 
+            {missingFields.length ? (
+              <ul className="mt-4 grid gap-1 font-body text-sm text-black/58">
+                {missingFields.map((field) => (
+                  <li key={field}>{field}</li>
+                ))}
+              </ul>
+            ) : null}
             {status === "sent" ? (
               <p className="mt-4 font-body text-sm text-moss">Diagnóstico enviado com segurança.</p>
             ) : null}

@@ -8,10 +8,10 @@ export function FinalExperienceCta() {
   const [requestedTime, setRequestedTime] = useState("");
 
   return (
-    <section className="border-t border-pearl/10 bg-obsidian px-6 py-28 text-pearl lg:px-16 lg:py-40">
+    <section className="border-t border-pearl/10 bg-obsidian px-6 py-32 text-pearl lg:px-16 lg:py-40">
       <div className="mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-12 lg:items-end">
         <div className="lg:col-span-7">
-          <p className="font-ui text-xs font-semibold uppercase tracking-[0.25em] text-gold">
+          <p className="font-ui text-xs font-semibold uppercase text-gold">
             Agendamento
           </p>
           <h2 className="mt-4 max-w-4xl font-display text-5xl leading-tight sm:text-6xl">
@@ -21,7 +21,7 @@ export function FinalExperienceCta() {
 
         <div className="lg:col-span-5">
           <div className="grid gap-3 sm:grid-cols-2">
-            <label className="grid gap-2 font-ui text-xs font-semibold uppercase tracking-[0.16em] text-pearl/52">
+            <label className="grid gap-2 font-ui text-xs font-semibold uppercase text-pearl/52">
               Dia
               <input
                 type="date"
@@ -30,7 +30,7 @@ export function FinalExperienceCta() {
                 className="min-h-12 rounded-md border border-pearl/12 bg-carbon px-4 font-body text-sm normal-case tracking-normal text-pearl outline-none transition duration-500 focus:border-gold"
               />
             </label>
-            <label className="grid gap-2 font-ui text-xs font-semibold uppercase tracking-[0.16em] text-pearl/52">
+            <label className="grid gap-2 font-ui text-xs font-semibold uppercase text-pearl/52">
               Horário
               <input
                 type="time"

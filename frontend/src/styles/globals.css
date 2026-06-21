@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,7 +5,7 @@
 :root {
   color-scheme: dark;
   font-family: "Inter", system-ui, sans-serif;
-  background: #0e0e0e;
+  background: #0a0a0c;
 }
 
 * {
@@ -22,7 +20,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #0e0e0e;
+  background: #0a0a0c;
 }
 
 img {
@@ -37,6 +35,6 @@ textarea {
 }
 
 ::selection {
-  background: rgba(168, 138, 90, 0.35);
+  background: rgba(197, 160, 89, 0.35);
   color: #f5f1ea;
 }

@@ -17,6 +17,11 @@ if env_file.exists():
 SECRET_KEY = env("DJANGO_SECRET_KEY", default="unsafe-local-development-key")
 DEBUG = env("DJANGO_DEBUG")
 ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS", default=["localhost", "127.0.0.1"])
+ADMIN_PATH = env("DJANGO_ADMIN_PATH", default="acesso-operacional-carlu-2026/").strip("/") + "/"
+ADMIN_ACCESS_KEY = env("DJANGO_ADMIN_ACCESS_KEY", default="").strip()
+ADMIN_ALLOWED_IPS = [
+    ip.strip() for ip in env.list("DJANGO_ADMIN_ALLOWED_IPS", default=[]) if ip.strip()
+]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -44,6 +49,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "apps.audit.middleware.AdminAccessGuardMiddleware",
     "apps.audit.middleware.AuditRequestMiddleware",
 ]
 
@@ -120,7 +126,7 @@ CORS_ALLOWED_ORIGINS = env.list(
         "https://www.studiocarlustyles.com.br",
     ],
 )
-CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_CREDENTIALS = env.bool("CORS_ALLOW_CREDENTIALS", default=False)
 
 CSRF_TRUSTED_ORIGINS = env.list(
     "DJANGO_CSRF_TRUSTED_ORIGINS",

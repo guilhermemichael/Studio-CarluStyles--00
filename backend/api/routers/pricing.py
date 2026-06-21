@@ -1,7 +1,8 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 from django.core.cache import cache
 
 from api.schemas.pricing import PriceSimulationCreateSchema
+from api.security.rate_limit import InMemoryRateLimiter
 from apps.pricing.enums import HAIR_LENGTH_DESCRIPTIONS, HAIR_LENGTH_LABELS, HairLength
 from apps.pricing.models import PriceSimulation
 from apps.pricing.services import CurrencyFormatter
@@ -9,6 +10,16 @@ from apps.services_catalog.seed_data import INITIAL_SERVICES
 
 router = APIRouter(prefix="/pricing", tags=["pricing"])
 CACHE_TIMEOUT_SECONDS = 60 * 60 * 12
+simulation_limiter = InMemoryRateLimiter(max_hits=12, window_seconds=60 * 60)
+
+
+def _client_ip(request: Request) -> str:
+    forwarded_for = request.headers.get("x-forwarded-for", "")
+
+    if forwarded_for:
+        return forwarded_for.split(",")[0].strip()
+
+    return request.client.host if request.client else "unknown"
 
 
 def _cache_get(key: str):
@@ -95,7 +106,13 @@ async def estimate_price(service_slug: str, hair_length: HairLength = HairLength
 
 
 @router.post("/simulations", status_code=201)
-async def record_price_simulation(payload: PriceSimulationCreateSchema) -> dict:
+async def record_price_simulation(payload: PriceSimulationCreateSchema, request: Request) -> dict:
+    if payload.website:
+        return {"status": "ignored"}
+
+    if not simulation_limiter.allow(_client_ip(request)):
+        raise HTTPException(status_code=429, detail="Muitas simulações. Tente novamente mais tarde.")
+
     simulation = PriceSimulation.objects.create(
         service_slug=payload.service_slug,
         service_name=payload.service_name,

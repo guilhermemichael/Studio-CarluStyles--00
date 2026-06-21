@@ -1,7 +1,7 @@
 export const colors = {
-  black: "#0E0E0E",
+  black: "#0A0A0C",
   pearl: "#F5F1EA",
-  gold: "#A88A5A",
+  gold: "#C5A059",
   roseGold: "#B77E72",
   champagne: "#D8C7A3",
   carbon: "#151515",

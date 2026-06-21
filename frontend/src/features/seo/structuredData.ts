@@ -1,5 +1,5 @@
-import { services } from "../services/catalog";
 import { env } from "../../lib/env";
+import { services } from "../services/catalog";
 import { absoluteUrl } from "./metadata";
 
 export function localBusinessSchema() {
@@ -8,11 +8,26 @@ export function localBusinessSchema() {
     "@type": "BeautySalon",
     name: "Studio Carlu Styles",
     description:
-      "Espaço de beleza especializado em cuidados capilares, tratamentos, químicas, finalizações e transformações.",
+      "Studio de beleza em São Francisco, Paraíba, comandado por Carlu, cabeleireira com mais de 15 anos de experiência, atualização profissional constante e especialização em loiros, tratamentos, químicas e finalizações.",
     url: env.siteUrl,
     image: absoluteUrl("/assets/brand/studio-carlu-logo.png"),
     sameAs: [env.instagramUrl],
     hasMap: env.googleMapsUrl,
+    priceRange: "$$",
+    openingHours: "Mo-Sa 08:00-18:00",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Rua Joaquim Gabriel",
+      addressLocality: "São Francisco",
+      addressRegion: "PB",
+      postalCode: "58818-000",
+      addressCountry: "BR",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: -6.62,
+      longitude: -38.09,
+    },
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "Agendamento",
@@ -20,8 +35,8 @@ export function localBusinessSchema() {
       availableLanguage: "Portuguese",
     },
     areaServed: {
-      "@type": "Country",
-      name: "Brasil",
+      "@type": "City",
+      name: "São Francisco, Paraíba",
     },
   };
 }

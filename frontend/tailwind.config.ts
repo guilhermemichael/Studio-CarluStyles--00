@@ -5,9 +5,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        obsidian: "#0E0E0E",
+        obsidian: "#0A0A0C",
         pearl: "#F5F1EA",
-        gold: "#A88A5A",
+        gold: "#C5A059",
         roseGold: "#B77E72",
         champagne: "#D8C7A3",
         carbon: "#151515",
@@ -25,8 +25,11 @@ export default {
         ui: ["Inter", "sans-serif"]
       },
       boxShadow: {
-        goldGlow: "0 28px 90px rgba(168, 138, 90, 0.12)",
+        goldGlow: "0 28px 90px rgba(197, 160, 89, 0.12)",
         roseGlow: "0 24px 70px rgba(183, 126, 114, 0.14)"
+      },
+      transitionTimingFunction: {
+        luxury: "cubic-bezier(0.2, 0.8, 0.2, 1)"
       }
     }
   },

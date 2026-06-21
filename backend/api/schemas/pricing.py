@@ -15,3 +15,4 @@ class PriceSimulationCreateSchema(BaseModel):
     goal: str = Field(default="", max_length=80)
     estimated_price: str = Field(default="", max_length=80)
     source: str = Field(default="price_experience", max_length=40)
+    website: str = Field(default="", max_length=120)

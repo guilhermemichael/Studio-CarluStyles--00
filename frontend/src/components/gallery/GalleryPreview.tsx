@@ -21,10 +21,10 @@ export function GalleryPreview() {
   );
 
   return (
-    <section className="bg-obsidian px-6 py-28 text-pearl lg:px-16 lg:py-36">
+    <section className="bg-obsidian px-6 py-32 text-pearl lg:px-16 lg:py-44">
       <div className="mx-auto max-w-[1440px]">
         <div className="max-w-4xl">
-          <p className="font-ui text-xs font-semibold uppercase tracking-[0.25em] text-gold">
+          <p className="font-ui text-xs font-semibold uppercase text-gold">
             Galeria
           </p>
           <h2 className="mt-4 font-display text-5xl leading-tight">
@@ -37,9 +37,10 @@ export function GalleryPreview() {
             <button
               key={filter}
               type="button"
+              aria-pressed={activeFilter === filter}
               onClick={() => setActiveFilter(filter)}
               className={[
-                "rounded-md border px-4 py-2 font-ui text-xs uppercase tracking-[0.14em] transition duration-500",
+                "rounded-md border px-4 py-2 font-ui text-xs uppercase transition duration-500",
                 activeFilter === filter
                   ? "border-gold bg-gold text-black"
                   : "border-pearl/12 text-pearl/58 hover:border-gold hover:text-gold",
@@ -60,7 +61,7 @@ export function GalleryPreview() {
                 imageClassName="transition duration-700 hover:scale-[1.02]"
                 sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
               />
-              <figcaption className="absolute bottom-3 left-3 rounded-sm bg-obsidian/72 px-3 py-2 font-ui text-xs uppercase tracking-[0.16em] text-pearl/72">
+              <figcaption className="absolute bottom-3 left-3 rounded-sm bg-obsidian/72 px-3 py-2 font-ui text-xs uppercase text-pearl/72">
                 #{image.tag.replace(" ", "")}
               </figcaption>
             </figure>

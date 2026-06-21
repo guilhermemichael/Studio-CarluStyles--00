@@ -4,6 +4,7 @@ import { EditorialServices } from "../components/home/EditorialServices";
 import { FinalExperienceCta } from "../components/home/FinalExperienceCta";
 import { HairScheduleQuiz } from "../components/home/HairScheduleQuiz";
 import { HeroSection } from "../components/home/HeroSection";
+import { HowItWorksSection } from "../components/home/HowItWorksSection";
 import { LocalSeoSection } from "../components/home/LocalSeoSection";
 import { ManifestoSection } from "../components/home/ManifestoSection";
 import { TestimonialsSection } from "../components/home/TestimonialsSection";
@@ -29,6 +30,7 @@ export function HomePage() {
       <EditorialGallery />
       <TestimonialsSection />
       <AboutCarlu />
+      <HowItWorksSection />
       <LocalSeoSection />
       <FinalExperienceCta />
     </>

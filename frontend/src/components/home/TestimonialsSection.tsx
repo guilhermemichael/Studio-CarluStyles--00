@@ -21,17 +21,17 @@ const metrics = [
 
 export function TestimonialsSection() {
   return (
-    <section className="bg-carbon px-6 py-28 text-pearl lg:px-16 lg:py-36">
+    <section className="bg-carbon px-6 py-32 text-pearl lg:px-16 lg:py-44">
       <div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-12">
         <div className="lg:col-span-4">
-          <p className="font-ui text-xs font-semibold uppercase tracking-[0.25em] text-gold">
+          <p className="font-ui text-xs font-semibold uppercase text-gold">
             Confiança
           </p>
           <div className="mt-8 grid gap-6">
             {metrics.map(([value, label]) => (
               <div key={label} className="border-t border-pearl/10 pt-5">
                 <p className="font-display text-5xl text-gold">{value}</p>
-                <p className="mt-2 font-ui text-xs uppercase leading-5 tracking-[0.16em] text-pearl/48">
+                <p className="mt-2 font-ui text-xs uppercase leading-5 text-pearl/48">
                   {label}
                 </p>
               </div>
@@ -43,9 +43,9 @@ export function TestimonialsSection() {
           {testimonials.map((testimonial) => (
             <blockquote key={testimonial.quote} className="border-b border-pearl/10 pb-7">
               <p className="font-accent text-4xl leading-tight text-pearl sm:text-5xl">
-                “{testimonial.quote}”
+                "{testimonial.quote}"
               </p>
-              <footer className="mt-5 font-ui text-xs uppercase tracking-[0.18em] text-gold">
+              <footer className="mt-5 font-ui text-xs uppercase text-gold">
                 {testimonial.author}
               </footer>
             </blockquote>

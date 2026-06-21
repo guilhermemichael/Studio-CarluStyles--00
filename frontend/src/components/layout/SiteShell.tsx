@@ -29,18 +29,6 @@ export function SiteShell() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.ctrlKey && event.shiftKey && event.key.toLowerCase() === "a") {
-        window.location.href = env.adminUrl;
-      }
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
-
   return (
     <div className="min-h-screen bg-obsidian text-pearl">
       <header
@@ -129,7 +117,7 @@ export function SiteShell() {
           </div>
 
           <div>
-            <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-gold">
+            <p className="font-ui text-xs font-semibold uppercase text-gold">
               Navegação
             </p>
             <div className="mt-4 grid gap-3">
@@ -142,7 +130,7 @@ export function SiteShell() {
           </div>
 
           <div>
-            <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-gold">
+            <p className="font-ui text-xs font-semibold uppercase text-gold">
               Contato
             </p>
             <div className="mt-4 grid gap-3">
@@ -171,16 +159,16 @@ export function SiteShell() {
           </div>
 
           <div>
-            <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-gold">
+            <p className="font-ui text-xs font-semibold uppercase text-gold">
               Legal
             </p>
             <div className="mt-4 grid gap-3">
               <Link to="/politica-de-privacidade" className="font-ui text-sm text-pearl/62 hover:text-gold">
                 Política de privacidade
               </Link>
-              <a href={env.adminUrl} className="font-ui text-sm text-pearl/35 hover:text-gold" aria-label="Admin">
+              <span className="font-ui text-sm text-pearl/35">
                 © 2026 Studio Carlu Styles
-              </a>
+              </span>
             </div>
           </div>
         </div>

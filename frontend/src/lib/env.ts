@@ -5,7 +5,6 @@ const OFFICIAL_INSTAGRAM_URL =
 const OFFICIAL_GOOGLE_MAPS_URL =
   "https://maps.app.goo.gl/TzdoJmZgWnTHzkNh9?g_st=ic";
 const DEFAULT_SITE_URL = "https://studio-carlu-styles.vercel.app";
-const DEFAULT_ADMIN_URL = "/admin/";
 
 export const env = {
   apiBaseUrl: import.meta.env.VITE_API_BASE_URL ?? "/api",
@@ -13,5 +12,4 @@ export const env = {
   whatsappUrl: import.meta.env.VITE_WHATSAPP_URL ?? OFFICIAL_WHATSAPP_URL,
   instagramUrl: import.meta.env.VITE_INSTAGRAM_URL ?? OFFICIAL_INSTAGRAM_URL,
   googleMapsUrl: import.meta.env.VITE_GOOGLE_MAPS_URL ?? OFFICIAL_GOOGLE_MAPS_URL,
-  adminUrl: import.meta.env.VITE_ADMIN_URL ?? DEFAULT_ADMIN_URL,
 };

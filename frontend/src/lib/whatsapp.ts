@@ -1,6 +1,7 @@
 import { env } from "./env";
 
 type WhatsAppPayload = {
+  message?: string;
   name?: string;
   service?: string;
   hairLength?: string;
@@ -15,6 +16,10 @@ type WhatsAppPayload = {
 const OFFICIAL_WHATSAPP_NUMBER = "5583981580195";
 
 export function buildWhatsAppMessage(payload: WhatsAppPayload): string {
+  if (payload.message) {
+    return encodeURIComponent(payload.message);
+  }
+
   const lines = [
     "Olá, vim pelo site da Studio Carlu Styles e gostaria de verificar disponibilidade para um atendimento.",
   ];

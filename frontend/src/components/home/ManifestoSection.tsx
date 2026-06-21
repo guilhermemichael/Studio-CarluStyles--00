@@ -6,10 +6,10 @@ export function ManifestoSection() {
   const [imageSrc, setImageSrc] = useState(carluAssets.profileLabcoat);
 
   return (
-    <section id="manifesto" className="bg-obsidian px-6 py-28 text-pearl lg:px-16 lg:py-36">
+    <section id="manifesto" className="bg-obsidian px-6 py-32 text-pearl lg:px-16 lg:py-44">
       <div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-12 lg:items-center">
         <div className="lg:col-span-7">
-          <p className="font-ui text-xs font-semibold uppercase tracking-[0.25em] text-gold">
+          <p className="font-ui text-xs font-semibold uppercase text-gold">
             Luxo técnico
           </p>
           <h2 className="mt-5 max-w-4xl font-display text-5xl leading-tight sm:text-6xl">

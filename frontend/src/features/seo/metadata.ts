@@ -11,16 +11,16 @@ const defaultImage = "/assets/brand/studio-carlu-logo.png";
 
 export const pageMetadata = {
   home: {
-    title: "Studio Carlu Styles | Beleza técnica e cuidado premium",
+    title: "Studio Carlu Styles | Cabeleireira em São Francisco PB",
     description:
-      "Studio de beleza especializado em cuidados capilares, tratamentos, químicas, finalizações e transformações com atendimento personalizado.",
+      "Studio de beleza em São Francisco, PB, com Carlu: mais de 15 anos de experiência, especialização em loiros, tratamentos, químicas e finalizações.",
     path: "/",
     image: defaultImage,
   },
   services: {
-    title: "Serviços capilares profissionais | Studio Carlu Styles",
+    title: "Serviços capilares em São Francisco PB | Studio Carlu Styles",
     description:
-      "Conheça serviços de finalização, tratamentos, químicas, luzes, mechas, progressiva, selagem e cuidados personalizados.",
+      "Conheça luzes, mechas, morena iluminada, tratamentos, progressiva, selagem e finalizações com avaliação técnica da Carlu.",
     path: "/servicos",
     image: defaultImage,
   },
@@ -46,16 +46,16 @@ export const pageMetadata = {
     image: "/assets/products/product-01.jpg",
   },
   about: {
-    title: "Sobre a profissional | Studio Carlu Styles",
+    title: "Sobre a Carlu | 15+ anos como cabeleireira",
     description:
-      "Conheça a proposta da Studio Carlu Styles: técnica, sofisticação e cuidado personalizado em cada atendimento capilar.",
+      "Conheça Carlu, cabeleireira em São Francisco, PB, com mais de 15 anos de experiência e atualização profissional constante.",
     path: "/sobre",
     image: defaultImage,
   },
   location: {
-    title: "Localização e agendamento | Studio Carlu Styles",
+    title: "Localização em São Francisco PB | Studio Carlu Styles",
     description:
-      "Agende pelo WhatsApp, veja como chegar e acompanhe o Instagram oficial da Studio Carlu Styles.",
+      "Atendimento em São Francisco, Paraíba. Agende pelo WhatsApp, veja como chegar e acompanhe o Instagram oficial da Studio Carlu Styles.",
     path: "/localizacao",
     image: defaultImage,
   },

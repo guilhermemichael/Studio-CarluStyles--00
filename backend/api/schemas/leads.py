@@ -9,3 +9,4 @@ class LeadCreateSchema(BaseModel):
     chemical_history: str = Field(default="", max_length=2000)
     message: str = Field(default="", max_length=2000)
     consent_privacy_policy: bool
+    website: str = Field(default="", max_length=120)

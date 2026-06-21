@@ -2,8 +2,10 @@ import os
 
 import django
 from django.apps import apps
+from django.conf import settings
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.base import BaseHTTPMiddleware
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.prod")
 
@@ -38,10 +40,20 @@ def create_api_app() -> FastAPI:
     app.add_middleware(
         CORSMiddleware,
         allow_origins=_cors_origins(),
-        allow_credentials=True,
+        allow_credentials=settings.CORS_ALLOW_CREDENTIALS,
         allow_methods=["GET", "POST"],
         allow_headers=["Content-Type", "Authorization"],
     )
+
+    async def cache_headers(request, call_next):
+        response = await call_next(request)
+
+        if request.method == "GET" and request.url.path.startswith("/api/"):
+            response.headers.setdefault("Cache-Control", "public, max-age=3600")
+
+        return response
+
+    app.add_middleware(BaseHTTPMiddleware, dispatch=cache_headers)
 
     app.include_router(health.router, prefix="/api")
     app.include_router(brand.router, prefix="/api")

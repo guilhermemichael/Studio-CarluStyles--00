@@ -72,6 +72,9 @@ Preencha no `.env`:
 - `POSTGRES_PASSWORD`
 - `VITE_WHATSAPP_URL`
 - `VITE_GOOGLE_MAPS_URL`
+- `DJANGO_ADMIN_PATH`
+- `DJANGO_ADMIN_ACCESS_KEY`
+- `DJANGO_ADMIN_ALLOWED_IPS`
 
 ## 5. Subir a aplicação
 
@@ -88,7 +91,7 @@ sh infra/scripts/create_admin.sh
 Admin:
 
 ```text
-https://studiocarlustyles.com.br/admin/
+https://studiocarlustyles.com.br/acesso-operacional-carlu-2026/
 ```
 
 Healthcheck:
@@ -112,6 +115,7 @@ sh infra/scripts/deploy.sh
 - Portas 80 e 443 liberadas.
 - `.env` preenchido com segredos reais.
 - `DJANGO_DEBUG=false`.
+- Admin fora de `/admin/`, com caminho privado e proteção por chave ou IP.
 - WhatsApp oficial configurado.
 - Usuário admin criado.
 - Backup PostgreSQL agendado.
